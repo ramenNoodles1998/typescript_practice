@@ -62,17 +62,12 @@ function log(message: string | number): void {
 
 //Interfaces
 
-interface UserInterface {
+interface  PersonInterface {
    readonly id: number,
     name: string
     age?: number
+    register(): string
 } 
-
-const user1: UserInterface = {
-    id: 1,
-    name: 'John'
-}
-
 type Point = number | string
 
 const p1: Point = 1
@@ -87,15 +82,41 @@ const sub: MathFunc = (x:number, y: number): number => x - y
 
 
 class Person {
-    protected id: number
+    id: number
     name: string
 
     constructor(id: number, name: string) {
       this.id = id
       this.name = name 
     }
+
+    register(){
+        return 'string'
+    }
 }
 
 const roman = new Person(1, 'roman meredith')
 
 console.log(roman)
+
+class Employee extends Person {
+    position: string
+
+    constructor(id: number, name: string, postion: string) {
+        super(id, name)
+
+        this.position = postion
+    }
+}
+
+const emp = new Employee(3, 'Shaun', 'Developer')
+
+console.log(emp.register())
+
+function getArray<T>(items: T[]) : T[] {
+    return new Array().concat(items)
+}
+
+let numArray = getArray([1,2,3,6])
+
+let strArray = getArray(['brad', 'john', 'Jill'])
